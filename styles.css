@@ -1,0 +1,110 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Wrapper for sidebar and content */
+#wrapper {
+    display: flex;
+}
+
+/* Sidebar Styles */
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background-color: #343a40;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #495057;
+    text-align: center;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    list-style: none;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li {
+    padding: 10px;
+    font-size: 16px;
+    display: block;
+}
+
+#sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    transition: all 0.3s;
+}
+
+#sidebar ul li a:hover {
+    background-color: #495057;
+}
+
+#sidebar ul li.active > a {
+    background-color: #007bff;
+    color: white;
+}
+
+#sidebar ul ul {
+    list-style: none;
+    padding-left: 30px;
+}
+
+/* Sidebar collapse/expand button */
+#sidebarToggle {
+    margin-top: 10px;
+}
+
+/* Content Area */
+#content {
+    width: 100%;
+    padding: 20px;
+    background-color: #f8f9fa;
+    transition: all 0.3s;
+}
+
+/* Toggle the sidebar */
+#sidebar.collapsed {
+    min-width: 80px;
+    max-width: 80px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+#sidebar.collapsed ul li a {
+    text-align: center;
+    padding: 10px 5px;
+}
+
+#sidebar.collapsed ul li a:hover {
+    text-align: center;
+}
+
+#sidebar.collapsed ul ul {
+    padding-left: 10px;
+}
+
+#sidebar.collapsed .sidebar-header h3 {
+    display: none;
+}
+
+#sidebar.collapsed .sidebar-header button {
+    margin: 10px auto;
+    display: block;
+}
+
+/* Search Input */
+#sidebar form {
+    padding: 20px;
+}

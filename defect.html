@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Defect</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- Bootstrap Select CSS (for live search, if desired) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css">
+  
+  <!-- jQuery and Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- Bootstrap Select JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"></script>
+  
+  <style>
+    body { padding-top: 70px; }
+    .build-id { font-style: italic; }
+
+
+/* Limit the width of the dropdown menu and allow text to wrap */
+.bootstrap-select .dropdown-menu {
+  max-width: 300px;
+}
+
+.bootstrap-select .dropdown-menu li a {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+  </style>
+</head>
+<body>
+  <!-- Navigation (simplified) -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">CCMS</a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/kcc/Property">Properties</a></li>
+          <li><a href="/kcc/ServiceUser">Service Users</a></li>
+          <!-- Additional nav items... -->
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pavan <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/kcc/Profile">Your Profile</a></li>
+            </ul>
+          </li>
+          <li><a href="/kcc/Account/SignOut">Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Main Content -->
+  <div class="container">
+    <h1>New Defect</h1>
+    <h4>Seth Court, 23 Parmiter Street, Tower Hamlets. E2 9EX</h4>
+    
+    <form id="frm_defect" action="/kcc/Defect/Create" method="post" class="form-horizontal">
+      <!-- Security & Hidden Fields -->
+      <input type="hidden" name="__RequestVerificationToken" value="YOUR_TOKEN_HERE">
+      <input type="hidden" id="PropertyUuid" name="PropertyUuid" value="YOUR_PROPERTY_UUID">
+      
+      <!-- Category Sub Item with ALL Options -->
+      <div class="form-group">
+        <label for="QuestionId" class="col-sm-2 control-label">Category sub item</label>
+        <div class="col-sm-6">
+          <select id="QuestionId" name="QuestionId" class="form-control selectpicker" 
+                  data-live-search="true" data-show-subtext="true">
+            <option value="163">(AASC) Child safety gates are fitted on each staircase (where appropriate);</option>
+            <option value="164">B.13.1 (AASC) Inventory Items</option>
+            <option value="72">B.2.1.1 (AASC) Gas leak;</option>
+            <option value="81">B.2.1.10 (AASC) Lack of operational smoke detectors in HMOs;</option>
+            <option value="82">B.2.1.11 (AASC) Exposure to toxic or hazardous chemicals or gas; or</option>
+            <option value="83">B.2.1.12 (AASC) Fire damage affecting the structural integrity of the property or resulting in any of the circumstances described in B.2.1.1 to B.2.1.11.</option>
+            <option value="165">B.2.1.13 (AASC) CO Detector/Interlinked Smoke Detector is not sounding continuously</option>
+            <option value="73">B.2.1.2 (AASC) Structural instability;</option>
+            <option value="74">B.2.1.3 (AASC)  Flooding or free standing water within the accommodation; BURST PIPE REQUIRING IMMEDIATE ATTENTION</option>
+            <option value="75">B.2.1.4 (AASC)  Water penetration through the structure of the accommodation resulting in pooling;</option>
+            <option value="76">B.2.1.5 (AASC)  Damaged or friable asbestos linings or insulation products;</option>
+            <option value="77">B.2.1.6 (AASC)  Following a Housing Health and Safety Rating System (HHSRS) inspection, the Accommodation receives a health and safety assessment of Category A, B or C (to note, the Response Times required by the Authority in relation to Accommodation being unsafe outlined in Paragraph B.14 take precedence over the requirements of any Local Authority order regarding remediation following a HHSRS assessment);</option>
+            <option value="78">B.2.1.7 (AASC)  Electrical damage that could lead to fire or other injury, which could constitute a category 1 Hazard under the Housing Act 2004;</option>
+            <option value="79">B.2.1.8 (AASC)  Broken glazing and/or windows or external doors which prevent the property being secured against intruders;</option>
+            <option value="80">B.2.1.9 (AASC) No mains water supplied;</option>
+            <option value="85">B.3.1.0.11 (AASC) SMOKE DETECTOR BATTERY NEEDS CHANGING</option>
+            <option value="87">B.3.1.1 (AASC) No gas supplied where gas is normally supplied;</option>
+            <option value="96">B.3.1.10 (AASC) No operational space heating system which is capable of heating the whole of the dwelling; NO HEATING AND HOT WATER</option>
+            <option value="97">B.3.1.11 (AASC) Blocked foul and/or surface water drainage either inside or outside the Accommodation, which affects the Accommodation or poses a health risk to occupants; MAJOR BLOCKAGES i.e NO DRAINAGE FROM DRAINS, SINKS OR TOILETS</option>
+            <option value="98">B.3.1.12 (AASC) Leaks which give rise to potential flooding either inside or outside the Accommodation; MAJOR LEAK</option>
+            <option value="99">B.3.1.13 (AASC) No valid gas and/or electrical certification for electrical wiring and associated components and fittings, including failure to obtain valid electrical certification upon the completion of any work to electrical wiring and associated components a</option>
+            <option value="100">B.3.1.14 (AASC) Windows and balconies which do not have any protection against falling, in Accommodation for children or adults with specific needs;</option>
+            <option value="101">B.3.1.15 (AASC) Broken glazing and/or window or door frames which represent a hazard to the health and safety of Service Users; BROKEN/SMASHED GLAZING</option>
+            <option value="102">B.3.1.16 (AASC) Pest infestation of a type or scale which represents a serious hazard to the health and safety of Service Users;</option>
+            <option value="103">B.3.1.17 (AASC) Inadequate or a lack of necessary adaptations to meet the specific needs of disabled or at risk Service Users;</option>
+            <option value="104">B.3.1.18 (AASC) Mould on the walls or ceilings of a type or scale which represents a serious hazard to the health and safety of Service Users; or</option>
+            <option value="105">B.3.1.19 (AASC) Ground floor windows, and other accessible windows, and any entrance doors that are not capable of being closed and locked, or which are in a condition which compromises the security of the property PROBLEMS WITH EXTERNAL LOCKS</option>
+            <option value="88">B.3.1.2 (AASC) No electrical power supplied NO ELECTRIC IN THE PROPERTY</option>
+            <option value="166">B.3.1.20 (AASC) The smoke alarm is not beeping indicating current battery life is satisfactory</option>
+            <option value="167">B.3.1.21 (AASC) There are cooking facilities and there is a provided pan set</option>
+            <option value="168">B.3.1.22 (AASC) First floor windows and above have working locks, handles or hinges</option>
+            <option value="170">B.3.1.23 (AASC) All external doors have working handles</option>
+            <option value="89">B.3.1.3 (AASC) Falling or unstable ceiling fabric;</option>
+            <option value="90">B.3.1.4 (AASC) Hole in or weakened floor;</option>
+            <option value="91">B.3.1.5 (AASC) Bare or exposed electrical wiring; BROKEN PLUG/LIGHT SOCKET, LIGHT PENDANT</option>
+            <option value="92">B.3.1.6 (AASC) No operational smoke or fire alarms;  FIRE OR SMOKE DETECTOR FAULTY OR MISSING</option>
+            <option value="93">B.3.1.7 (AASC) Failure to comply with Local Authority licensing requirements with regard to fire safety and/or the fire safety standards described in Paragraph B.9 of this Schedule 2;</option>
+            <option value="86">B.3.1.7.1 (AASC) Cooker hood has excessive grease build-up likely to constitute a fire hazard</option>
+            <option value="94">B.3.1.8 (AASC) No operational Carbon Monoxide (CO) detector, where a property has a solid fuel or gas appliance; MONITOR HAS BEEN CHECKED ?</option>
+            <option value="95">B.3.1.9 (AASC) No operational hot water supply; PROBLEMS WITH HOT WATER SUPPLY ONLY</option>
+            <option value="107">B.4.1.1  (AASC) The accommodation is of the type appropriate to be allocated to the Service User;</option>
+            <option value="116">B.4.1.10 (AASC) Doors and windows are capable of being secured to the minimum standards recommended by the Police and the Association of British Insurers; DAMAGED OR MISSING DOOR CLOSERS OR HANDLES</option>
+            <option value="117">B.4.1.11 (AASC) All windows above ground floor level have restrictors where children or vulnerable adults with specific needs may be present</option>
+            <option value="118">B.4.1.12 (AASC) Drinking and other cold water supplies available at all times on demand and of sufficient pressure to operate heating installations</option>
+            <option value="119">B.4.1.13 (AASC) If a full space heating system is not installed then appropriate fixed heating appliances are fitted in the living and sleeping areas, which are capable of heating the relevant rooms to a comfortable temperature.  Paraffin or bottled gas heating systems shall not be used;</option>
+            <option value="120">B.4.1.14 (AASC) Plumbing is operational, in a good state and leak free; MINOR BLOCKAGES i.e. SLOW DRAINAGE OR MINOR LEAK i.e. DRIPPING TAP, DRIPPING RADIATOR</option>
+            <option value="121">B.4.1.15 (AASC) In houses of multiple occupation all bathrooms, shower rooms, toilets, and bedrooms have locks capable of being locked from the inside; PROBLEMS WITH INTERNAL LOCKS</option>
+            <option value="122">B.4.1.16 (AASC) Kitchen fit-out is in a state of good condition, with cupboard and food storage space within the constraints of the existing structure</option>
+            <option value="123">B.4.1.17 (AASC) Kitchen units and worktops easy to clean and maintain; ISSUES WITH KITCHEN UNITS/WORKTOPS/DRAWERS</option>
+            <option value="124">B.4.1.18 (AASC) Bathrooms are in a good condition and equipped with a bath and/or shower, toilet, wash hand basin, all in working order and a towel rail and waterproof covering (e.g. shower curtain or equivalent) to prevent pooling or flooding whilst the shower or bath is being used; DAMAGED OR MISSING BATH PANEL, TOILET SEAT OR TOILET UNSTABLE</option>
+            <option value="125">B.4.1.19 (AASC) Floor coverings in kitchens and bathrooms are easy to clean, moisture resistant and suitable for use in wet areas; I.E. NOT CARPET !</option>
+            <option value="108">B.4.1.2  (AASC) The interior structure of accommodation and all fixtures and fittings safe and free from defects or artefacts that may pose a hazard to Service Users;</option>
+            <option value="126">B.4.1.20 (AASC) The Accommodation is free from pest infestation PEST TREATMENT</option>
+            <option value="127">B.4.1.21 (AASC) The Accommodation has a telephone line installed or is capable of having such a line installed; an</option>
+            <option value="128">B.4.1.22 (AASC) The Accommodation has adequate bins for the storage of refuse, having regard to the disposal services provided by the Local Authority.</option>
+            <option value="109">B.4.1.3  (AASC) Stairs have at least one handrail and are not considered hazardous;</option>
+            <option value="110">B.4.1.4 (AASC) Roofs, walls, and external windows and doors are in a good condition, are weatherproof and are sufficiently well-fitting so they do not cause severe draughts; DAMAGED DOORS</option>
+            <option value="111">B.4.1.5 (AASC) Rooms have satisfactory provision for natural and artificial lighting;</option>
+            <option value="112">B.4.1.6 (AASC) Internal ventilation is sufficient to prevent dampness and condensation, and is adequate for waste air, smoke, fumes and gas extraction, and includes adequate mechanical ventilation in the kitchen and bathroom, where necessary, to minimise condensation and prevent dampness;</option>
+            <option value="113">B.4.1.7 (AASC) Smoke and/or heat detectors fitted on each floor and in compliance with the relevant British Standards, Building Regulations and Local Authority licensing requirements. In houses of multiple occupation detectors are to be mains powered with battery backup and inter-linked to BS 5446 or its equivalent, and to meet local Fire and Rescue Service guidelines and requirements;</option>
+            <option value="114">B.4.1.8 (AASC) in houses of multiple occupation, visible notices explaining action to be taken in the event of fire or other emergency are displayed. Notices (which shall include diagrams showing emergency exits) are to be in a language the relevant Service User(s) understands or in such diagrammatic form that the relevant Service User(s) are capable of understanding irrespective of his/their ability to read in any language;</option>
+            <option value="115">B.4.1.9 (AASC) Glazing is free from breakages, and free from cracks which may undermine the structural integrity of the glazing; WINDOW NOT OPENING PROPERLY, CRACKED GLAZING OR ROTTED FRAME</option>
+            <option value="129">B.4.3.1.1 (AASC) Significant holes and cracks in walls, ceilings, doors and any plastered surface; PAINT ALL COMMUNAL AREAS &amp; 1 OR MORE BEDROOMS OR WHOLE FAMILY PROPERTY</option>
+            <option value="130">B.4.3.1.2 (AASC) Extensive peeling, flaking or blistering; REPAINT A WHOLE ROOM</option>
+            <option value="131">B.4.3.1.3 (AASC) Ingrained dirt which it is not possible for the Service User to remove; PAINT A CEILING OR SINGLE WALL</option>
+            <option value="132">B.4.3.1.4 (AASC) Substantial discoloration or variation of colour of a wall due to, for example, partial redecoration, removal of paint surface by cleaning materials, etc; and</option>
+            <option value="133">B.4.3.1.5 (AASC) Significant signs of dampness and mould growth.</option>
+            <option value="134">B.4.3.2 (AASC) wallpapered surfaces to be free of:</option>
+            <option value="135">B.4.3.2.1 (AASC) Significant holes and cracks in walls, ceilings and any plastered surface;</option>
+            <option value="136">B.4.3.2.2 (AASC) Ingrained dirt which is not possible for the Service User to remove;</option>
+            <option value="137">B.4.3.2.3 (AASC) Substantial discoloration or variation of colour of a wall due to, for example, partial redecoration, removal of paint surface by cleaning materials, etc; and</option>
+            <option value="138">B.4.3.2.4 (AASC) Significant signs of dampness and mould growth. DAMP/MOULD</option>
+            <option value="139">B.4.3.3 (AASC) Wood surfaces to be clean</option>
+            <option value="140">B.4.3.4 (AASC) Wall tiles and floor tiles to be free of significant damage</option>
+            <option value="141">B.4.3.5.1 (AASC) Loose dust, debris and all refuse removed; CARPET CLEAN</option>
+            <option value="142">B.4.3.5.2 (AASC) All surfaces including walls, tiling, sills, fireplace surrounds, worktops, interiors and exteriors of cupboards and drawers to be washed down, cleaned of grease and other natural and unnatural deposits or coatings and disinfected; REPLACE FLOOR COVERING I.E. CARPET</option>
+            <option value="143">B.4.3.5.3 (AASC) Floors and floor coverings to be washed down or cleaned of grease and other natural and unnatural deposits or coatings and disinfected; LOOSE OR ROTTEN FLOORBOARDS</option>
+            <option value="144">B.4.3.5.4 (AASC) Sinks, baths, shower units and other sanitary-ware to be cleaned, and free of stains and other material deposits and disinfected; and</option>
+            <option value="145">B.4.3.5.5 (AASC) Windows and frames to be washed down and disinfected and cleaned of deposits of grease or other natural and unnatural coatings and marks.</option>
+            <option value="146">B.4.3.6 (AASC) Gardens, outbuildings and boundary walls and/or fencing maintained in a safe and tidy condition.</option>
+            <option value="169">B.4.3.7 (AASC) Any fire blankets in the property are not damaged or missing</option>
+            <option value="150">B.6.1.1.1 (AASC) Floors, doors, stairs, walls, ceilings, parapets, balustrades, hand rails free from defects or artefacts that may pose a hazard to people; SMALL RUBBISH REMOVAL (SMALL VAN LOAD)</option>
+            <option value="151">B.6.1.1.2 (AASC) Floors, doors, stairs, walls, ceilings, balustrades, stringers, panels and parapets free from litter, fly-posters, accumulated debris, natural detritus, impacted soilage, drip marks, graffiti and other marks capable of being cleaned; SMALL CLEAN &amp; CLEAR (1 BEDROOM &amp; COMMUNAL AREA)</option>
+            <option value="152">B.6.1.1.3 (AASC) Lifts maintained in accordance with manufacturers‟ specifications and in working order;</option>
+            <option value="153">B.6.1.1.4 (AASC) Lighting in all areas in working order; ELECTRIC SOCKETS NOT WORKING, BLOWN BULB</option>
+            <option value="154">B.6.1.1.5 (AASC) Porch canopies and flat roof areas free of debris and organic matter;</option>
+            <option value="155">B.6.1.1.6 (AASC) All drainage, guttering and other water channels in working order with no ponding of water, leaks or overflows;</option>
+            <option value="156">B.6.1.1.7 (AASC) All areas free from pest infestation;</option>
+            <option value="157">B.6.1.1.8 (AASC) Walls, stairway structures, ceilings and floors free from holes, cracks, loose plaster, spalling concrete and other surface structure defects as applicable;</option>
+            <option value="158">B.6.1.1.9 (AASC) Doors, hatches and other coverings free from holes, securable where appropriate, and in proper operating order.</option>
+            <option value="159">B.6.1.2.1 (AASC) Walkways and pavements, stairways and steps, walls, balustrades, hand rails free from defects or artefacts that may pose a hazard to people; LARGE RUBBISH REMOVAL (INCLUDING FURNITURE)</option>
+            <option value="160">B.6.1.2.2 (AASC) Walkways and pavements, stairways and steps, walls, ceilings, balustrades, and parapets free from litter, fly-posters, accumulated debris, natural detritus, impacted soilage, drip marks, graffiti and other marks capable of being cleaned. FULL HOUSE CLEAN &amp; CLEAR</option>
+            <option value="162">B.8.1.2 (AASC) All external door furniture is in good working order</option>
+          </select>
+          <div id="emergencyWarning" class="alert alert-danger" style="display:none; margin-top:10px;">
+            <strong>Please call</strong> in for immediate or emergency defects.
+          </div>
+        </div>
+      </div>
+      
+      <!-- Additional Form Fields -->
+      <div class="form-group">
+        <label for="WorkInitialStartDate" class="col-sm-2 control-label">Initial work start date</label>
+        <div class="col-sm-2">
+          <input type="datetime" id="WorkInitialStartDate" name="WorkInitialStartDate" class="form-control" value="14/02/2025 01:32:55">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="WorkStartDate" class="col-sm-2 control-label">Effective start date</label>
+        <div class="col-sm-2">
+          <input type="datetime" id="WorkStartDate" name="WorkStartDate" class="form-control" value="14/02/2025 01:32:55">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="Description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-6">
+          <textarea id="Description" name="Description" class="form-control" rows="2" placeholder="Enter description"></textarea>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="Location" class="col-sm-2 control-label">Location</label>
+        <div class="col-sm-6">
+          <textarea id="Location" name="Location" class="form-control" rows="2" placeholder="Enter location"></textarea>
+        </div>
+      </div>
+      
+      <!-- Priority (Hidden Select & Readonly Textbox) -->
+      <div class="form-group">
+        <label for="ddPriority" class="col-sm-2 control-label">Priority</label>
+        <div class="col-sm-6">
+          <select id="ddPriority_SelectedValue" name="ddPriority.SelectedValue" style="display:none;">
+            <option value=""></option>
+            <option value="8">1 Year</option>
+            <option value="9">CAT 1</option>
+            <option value="2">CAT 2</option>
+            <option value="11">CAT 3</option>
+            <option value="7">Change of Occupancy(On move-in)</option>
+            <option value="12">EmergencyFollowUp(AASC)</option>
+            <option value="1">Immediate</option>
+            <option value="6">Move On</option>
+            <option value="4">Routine</option>
+            <option selected="selected" value="3">Urgent</option>
+          </select>
+          <input type="text" id="ddPriority__DDTextbox" name="ddPriority.ddPriority__DDTextbox" class="form-control" readonly value="Urgent">
+          <input type="hidden" id="ddPriority_IsEditable" name="ddPriority.IsEditable" value="False">
+        </div>
+      </div>
+      
+      <!-- Raised by -->
+      <div class="form-group">
+        <label for="RaisedByUuid" class="col-sm-2 control-label">Raised by</label>
+        <div class="col-sm-6">
+          <select id="RaisedByUuid" name="RaisedByUuid" class="form-control">
+            <option value="f54bfcba-c3ad-11e7-8f11-002248016e46">Fire Risk Assessment</option>
+            <option value="cf6acc4c-a12f-11e2-9b72-02431db791db">KCC</option>
+            <option value="1a01c91e-7e4f-11e5-8db8-00155d8acf06">Landlord</option>
+            <option value="19fac2a3-7e4f-11e5-8db8-00155d8acf06">Local Authority</option>
+            <option value="34c93cc5-70b4-11e9-bea6-002248016e46">Migrant Helpline</option>
+            <option value="880c31f0-32b3-11ee-bc51-002248016e46">OfStEd</option>
+            <option value="73b6a2a9-9fb2-11ec-bb71-002248016e46">Post-Covid</option>
+            <option selected="selected" value="607c3837-a130-11e2-9b72-02431db791db">ReadyHomes</option>
+            <option value="1a081e38-7e4f-11e5-8db8-00155d8acf06">Tenants</option>
+            <option value="cf6ad206-a12f-11e2-9b72-02431db791db">UKVI</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Who is responsible? -->
+      <div class="form-group">
+        <label for="ResponsibilityId" class="col-sm-2 control-label">Who is responsible?</label>
+        <div class="col-sm-6">
+          <select id="ResponsibilityId" name="ResponsibilityId" class="form-control">
+            <option value="2">Landlord</option>
+            <option selected="selected" value="1">Ready-Homes</option>
+            <option value="3">Sub-Contractors</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Raised by (LM) -->
+      <div class="form-group">
+        <label for="RaisedByEmployee" class="col-sm-2 control-label">Raised by (LM)</label>
+        <div class="col-sm-6">
+          <input type="text" id="RaisedByEmployee" name="RaisedByEmployee" class="form-control" value="Pavan Kumar.Karumanchi" readonly>
+        </div>
+      </div>
+      
+      <!-- Short Comment -->
+      <div class="form-group">
+        <label for="ShortComment" class="col-sm-2 control-label">Short comment</label>
+        <div class="col-sm-6">
+          <input type="text" id="ShortComment" name="ShortComment" class="form-control" maxlength="254">
+        </div>
+      </div>
+      
+      <!-- Caused by SU (Radio Buttons) -->
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Caused by SU</label>
+        <div class="col-sm-4">
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default">
+              <input type="radio" name="CausedBySU" value="0" autocomplete="off" checked> No
+            </label>
+            <label class="btn btn-default">
+              <input type="radio" name="CausedBySU" value="1" autocomplete="off"> Yes
+            </label>
+            <label class="btn btn-default">
+              <input type="radio" name="CausedBySU" value="2" autocomplete="off"> Malicious
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Submit / Cancel Buttons -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-4">
+          <button type="submit" name="create" class="btn btn-primary">Create Defect</button>
+          <button type="reset" name="cancel" class="btn btn-default">Cancel</button>
+        </div>
+      </div>
+    </form>
+    
+    <!-- Modal for Defect Warning -->
+    <div class="modal fade" id="defectWarningModal" tabindex="-1" role="dialog" aria-labelledby="defectWarningLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="defectWarningLabel">Warning!</h4>
+          </div>
+          <div class="modal-body">
+            <p>Please address this defect immediately.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div><!-- End Container -->
+  
+  <!-- JavaScript for Dynamic Behavior -->
+  <script>
+    $(document).ready(function(){
+      // Mapping of category IDs to priority values
+      var priorityMapping = {
+        "85": "12", "86": "2", "87": "2", "88": "2", "89": "2",
+        "90": "2", "91": "2", "92": "2", "93": "2", "94": "2",
+        "95": "2", "96": "2", "97": "2", "98": "2", "99": "2",
+        "100": "2", "101": "2", "102": "2", "103": "2", "104": "2",
+        "105": "2", "166": "2", "167": "2", "168": "2", "170": "2",
+        "72": "9", "73": "9", "74": "9", "75": "9", "76": "9",
+        "77": "9", "78": "9", "79": "9", "80": "9", "81": "9",
+        "82": "9", "83": "9", "165": "9",
+        "107": "11", "108": "11", "109": "11", "110": "11", "111": "11",
+        "112": "11", "113": "11", "114": "11", "115": "11", "116": "11",
+        "117": "11", "118": "11", "119": "11", "120": "11", "121": "11",
+        "122": "11", "123": "11", "124": "11", "125": "11", "126": "11",
+        "127": "11", "128": "11", "169": "11", "129": "11", "130": "11",
+        "131": "11", "132": "11", "133": "11", "134": "11", "135": "11",
+        "136": "11", "137": "11", "138": "11", "139": "11", "140": "11",
+        "141": "11", "142": "11", "143": "11", "144": "11", "145": "11",
+        "146": "11", "150": "11", "151": "11", "152": "11", "153": "11",
+        "154": "11", "155": "11", "156": "11", "157": "11", "158": "11",
+        "159": "11", "160": "11", "162": "11", "163": "11", "164": "11"
+      };
+
+      // Emergency priorities
+      var emergencyPriorities = ["1", "2"];
+
+      // Update priority and emergency warning when the category changes
+      $("#QuestionId").change(function(){
+        var selected = $(this).val();
+        var newPriority = priorityMapping[selected] || "3"; // default to "Urgent" if not mapped
+        $("#ddPriority_SelectedValue").val(newPriority);
+        // Update the visible textbox with the corresponding option text
+        var priorityText = $("#ddPriority_SelectedValue option:selected").text();
+        $("#ddPriority__DDTextbox").val(priorityText);
+        // Show/hide emergency warning
+        if (emergencyPriorities.indexOf(newPriority) >= 0) {
+          $("#emergencyWarning").show();
+        } else {
+          $("#emergencyWarning").hide();
+        }
+      });
+      
+      // Open modal warning when "Caused by SU" radio button changes (if not "No")
+      $("input[name='CausedBySU']").change(function(){
+        if ($(this).val() !== "0") {
+          $("#defectWarningModal").modal("show");
+        }
+      });
+    });
+  </script>
+  
+  <!-- Footer -->
+  <footer class="container">
+    <hr>
+    <p>&copy; 2025 - Ready Homes <span class="pull-right build-id">Version 04/02/2025 15:36:08</span></p>
+  </footer>
+  
+</body>
+</html>

@@ -1,0 +1,50 @@
+-- Create Sites Table
+CREATE TABLE sites (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    site_name VARCHAR(255) UNIQUE NOT NULL
+) ENGINE=InnoDB;
+
+-- Create Properties Table (Flats)
+CREATE TABLE properties (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    site_id INT NOT NULL,
+    flat_number VARCHAR(50) NOT NULL,
+    property_name VARCHAR(255) NOT NULL,
+    address TEXT NOT NULL,
+    property_type ENUM('House', 'Apartment', 'Studio', 'Dormitory', 'Commercial') NOT NULL,
+    total_floors INT NOT NULL,
+    total_units INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (site_id, flat_number),
+    FOREIGN KEY (site_id) REFERENCES sites(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Create Rooms Table
+CREATE TABLE rooms (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    property_id INT NOT NULL,
+    room_number VARCHAR(50) NOT NULL,
+    room_type ENUM('Single', 'Double', 'Dormitory') NOT NULL,
+    total_beds INT NOT NULL,
+    room_size DECIMAL(5,2),
+    room_status ENUM('Available', 'Occupied') NOT NULL DEFAULT 'Available',
+    FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Create Beds Table
+CREATE TABLE beds (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    room_id INT NOT NULL,
+    bed_type ENUM('Single', 'Double', 'Bunk', 'Queen', 'King') NOT NULL,
+    quantity INT NOT NULL,
+    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Create Property Images Table
+CREATE TABLE property_images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    property_id INT NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (property_id) REFERENCES properties(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
